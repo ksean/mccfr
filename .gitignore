@@ -1,0 +1,7 @@
+# IDE specific
+.idea/
+*.iml
+
+# Gradle
+.gradle/
+!grade-wrapper.jar
