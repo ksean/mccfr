@@ -22,5 +22,5 @@ data class InfoSet(
     val key: String,
     val strategy: Map<Action, Float>,
     val regret: Map<Action, Float>,
-    val cumulative: Map<Action, Float>,
+    val averageStrategy: Map<Action, Float>,
 )

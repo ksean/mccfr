@@ -20,25 +20,25 @@ package sh.kss.mccfr
 
 object Strategy {
 
-    fun calculate(infoSet: InfoSet): InfoSet {
+    fun calculate(map: Map<Action, Float>): Map<Action, Float> {
 
-        // Create an immutable copy of the input strategy from the InfoSet
-        val regret: Map<Action, Float> = infoSet.regret.toMap()
+        // Create an immutable copy of the input map
+        val regret: Map<Action, Float> = map.toMap()
 
-        // Sum current regret for all actions
-        val regretSum = regret.values.sum();
+        // Sum current values for all actions
+        val valueSum = map.values.sum()
 
-        // If the sum of regret is > 0 then use the calculated value, otherwise
+        // If the sum of values is > 0 then use the calculated value, otherwise
         // initialize the strategy to an equal chance per action
-        return if (regretSum > 0) {
+        return if (valueSum > 0) {
 
-            infoSet.copy(strategy = regret.mapValues { it.value / regretSum })
+            map.mapValues { it.value / valueSum }
 
         } else {
 
-            val count = infoSet.regret.size
+            val count = map.size
 
-            infoSet.copy(strategy = regret.mapValues { 1F.div(count) })
+            map.mapValues { 1F.div(count) }
         }
     }
 }
